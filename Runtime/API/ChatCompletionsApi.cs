@@ -41,7 +41,7 @@ namespace com.studios.taprobana
         /// </summary>
         /// <param name="request"><see cref="ChatCompletionsRequest"/></param>
         /// <returns>See <see cref="ChatCompletionsResponse"/></returns>
-        /// <exception cref="WebRequestFailedException"/>
+        /// <exception cref="OpenAiRequestException"/>
         public async Task<ChatCompletionsResponse> CreateChatCompletionsRequest(ChatCompletionsRequest request)
         {
             string completionsApiUrl = apiUrl + "chat/completions";

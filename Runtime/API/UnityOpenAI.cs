@@ -45,12 +45,12 @@ namespace com.studios.taprobana
                 if (!response.IsSuccessStatusCode)
                 {
                     ErrorInfo error = JsonConvert.DeserializeObject<ErrorInfo>(responseMessage);
-                    throw new WebRequestFailedException(error);
+                    throw new OpenAiRequestException(error);
                 }
 
                 return responseMessage;
             }
-            catch (WebRequestFailedException)
+            catch (OpenAiRequestException)
             {
                 throw;
             }
@@ -58,7 +58,7 @@ namespace com.studios.taprobana
             {
                 ErrorInfo errorInfo = new ErrorInfo();
                 errorInfo.Error.Message = exception.Message;
-                throw new WebRequestFailedException(errorInfo);
+                throw new OpenAiRequestException(errorInfo);
             }
         }
     }

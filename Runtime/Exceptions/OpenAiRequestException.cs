@@ -4,20 +4,20 @@ using System.Runtime.Serialization;
 namespace com.studios.taprobana
 {
     [Serializable]
-    public class WebRequestFailedException : Exception
+    public class OpenAiRequestException : Exception
     {
         public string Type { get; }
         public string Param { get; }
         public string Code { get; }
 
-        public WebRequestFailedException(ErrorInfo errorInfo) : base(errorInfo?.Error?.Message)
+        public OpenAiRequestException(ErrorInfo errorInfo) : base(errorInfo?.Error?.Message)
         {
             this.Type = errorInfo?.Error?.Type;
             this.Param = errorInfo?.Error?.Param;
             this.Code = errorInfo?.Error?.Code;
         }
 
-        protected WebRequestFailedException(SerializationInfo info, StreamingContext context)
+        protected OpenAiRequestException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
             this.Type = info.GetString("Type");
