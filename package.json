@@ -1,0 +1,20 @@
+{
+  "name": "com.studios.taprobana.openai",
+  "version": "1.0.0",
+  "displayName": "Unity OpenAI",
+  "description": "OpenAI for unity",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "dependencies": {
+  },
+  "keywords": [
+    "unity",
+    "openai",
+    "taprobanastudios"
+  ],
+  "author": {
+    "name": "Taprobana Studios",
+    "email": "taprobanastudios@gmail.com",
+    "url": "https://www.unity3d.com"
+  }
+}
