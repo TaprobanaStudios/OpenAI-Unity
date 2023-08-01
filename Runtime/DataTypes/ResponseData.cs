@@ -9,7 +9,7 @@ namespace com.studios.taprobana
         public int Index { get; set; }
 
         [JsonProperty("message")]
-        public Message Message { get; set; }
+        public FunctionCallMessage Message { get; set; }
 
         [JsonProperty("finish_reason")]
         public string FinishReason { get; set; }
@@ -42,17 +42,57 @@ namespace com.studios.taprobana
         public string Model { get; set; }
 
         [JsonProperty("choices")]
-        public List<Choice> Choices { get; set; }
+        public List<Choice> Choices { get; set; } = new List<Choice>();
 
         [JsonProperty("usage")]
         public Usage Usage { get; set; }
 
-        public ChatCompletionsResponse()
+        /// <summary>
+        /// Get the response for the context sent. 
+        /// Pass index if multiple responses are expected
+        /// </summary>
+        /// <param name="index"></param>
+        public string GetResponseMessage(int index = 0)
         {
-            this.Choices = new List<Choice>();
+            return Choices[index].Message.Content;
         }
 
+        /// <summary>
+        /// Get the function call response data. 
+        /// Pass the index if multiple responses are expected
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>See <see cref="FunctionCall"/></returns>
+        public FunctionCall GetFunctionCallResponse(int index = 0)
+        {
+            return Choices[index].Message.FunctionCall;
+        }
     }
+
+    #region Function Call Response
+
+    public class FunctionCallMessage : Message
+    {
+        public FunctionCallMessage(string role, string content, FunctionCall functionCall): base(role, content)
+        {
+            this.FunctionCall = functionCall;
+        }
+
+        [JsonProperty("function_call")]
+        public FunctionCall FunctionCall { get; set; }
+    }
+
+    public class FunctionCall
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("arguments")]
+        public string Arguments { get; set; }
+
+    }
+
+    #endregion
 
     #region Error Responses
     public class ErrorDetails
