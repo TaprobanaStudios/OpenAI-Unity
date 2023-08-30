@@ -30,7 +30,7 @@ public class ChatCompletionsDemo : MonoBehaviour
         try
         {
             ChatCompletionsRequest chatCompletionsRequest = new ChatCompletionsRequest();
-            Message message = new(Roles.USER, input);
+            Message message = new(Roles.USER, userInput);
 
             chatCompletionsRequest.AddMessage(message);
 
